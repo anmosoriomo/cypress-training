@@ -1,0 +1,25 @@
+{
+  "name": "cypress_training",
+  "version": "1.0.0",
+  "description": "This is a workshop about Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ana-os-mo/cypress-training.git"
+  },
+  "keywords": [
+    "ui-testing",
+    "dojo",
+    "practice",
+    "cypress"
+  ],
+  "author": "Ana Osorio <anmosoriomo@unal.edu.co> (https://github.com/ana-os-mo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ana-os-mo/cypress-training/issues"
+  },
+  "homepage": "https://github.com/ana-os-mo/cypress-training#readme"
+}
