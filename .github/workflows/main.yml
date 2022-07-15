@@ -1,0 +1,30 @@
+name: continuous-integration-ci
+
+on: [pull_request]
+
+jobs:
+  e2e-testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v3
+
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - name: install-dependencies
+        # dependencies clean install
+        run: npm ci
+
+      - name: code-style
+        run: npm run lint
+
+      - name: ui-e2e-tests
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
+        
