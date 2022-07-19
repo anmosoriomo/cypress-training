@@ -29,11 +29,12 @@ describe("Buy a t-shirt", () => {
       email: "aperdomobo@gmail.com",
       password: "WorkshopProtractor",
     };
+    const fadedShortSleeve = "Faded Short Sleeve T-shirts";
     menuContentPage.visitMenuContentPage();
 
     // Action
     menuContentPage.goToTShirtMenu();
-    productListPage.addProductToCart();
+    productListPage.addTShirtToCart(fadedShortSleeve);
     shoppingCartPage.goToShoppingCartMenu();
     shoppingCartPage.goToAuthenticationMenu();
     loginPage.signIn(userId.email, userId.password);
