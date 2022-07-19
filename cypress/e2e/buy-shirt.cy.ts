@@ -1,34 +1,43 @@
+import {MenuContentPage, ProductListPage,
+  ShoppingCartPage, LoginPage, AddressStepPage,
+  ShippingStepPage, PaymentStepPage}
+  from "../page/index";
+
+const menuContentPage = new MenuContentPage();
+const productListPage = new ProductListPage();
+const shoppingCartPage = new ShoppingCartPage();
+const loginPage = new LoginPage();
+const addressStepPage = new AddressStepPage();
+const shippingStepPage = new ShippingStepPage();
+const paymentStepPage = new PaymentStepPage();
+
+const validationMessage = "Your order on My Store is complete.";
+const userId = {
+  email: "aperdomobo@gmail.com",
+  password: "WorkshopProtractor",
+};
+
 describe("Buy a t-shirt", () => {
   it("then the t-shirt should be bought", () => {
-    // goes to the website
-    cy.visit("http://automationpractice.com/");
-    // click on the T-shirt button
-    cy.get("#block_top_menu > ul > li:nth-child(3) > a").click();
-    // click on add to cart
-    cy.get(".ajax_add_to_cart_button > span").click();
-    // click on Proceed to checkout
-    // cy.get("[style*='display: block;'] .button-container > a").click();
-    cy.get(".layer_cart_cart > .button-container").click();
-    // again Proceed to checkout
-    cy.get(".cart_navigation span").click();
+    menuContentPage.visitMenuContentPage();
+    menuContentPage.goToTShirtMenu();
 
-    cy.get("#email").type("aperdomobo@gmail.com");
-    cy.get("#passwd").type("WorkshopProtractor");
-    cy.get("#SubmitLogin > span").click();
+    productListPage.addProductToCart();
 
-    // again Proceed to checkout
-    cy.get(".cart_navigation > .button").click();
-    // check terms of service checkbox
-    cy.get("#cgv").check();
-    // again Proceed to checkout
-    cy.get(".cart_navigation > .button").click();
+    shoppingCartPage.goToShoppingCartMenu();
+    shoppingCartPage.goToAuthenticationMenu();
 
-    // click on pay by bank wire
-    cy.get(".bankwire > span").click();
-    // confirm order
-    cy.get("#cart_navigation > .button").click();
+    loginPage.signIn(userId.email, userId.password);
 
-    cy.get("#center_column > div > p > strong")
-        .should("have.text", "Your order on My Store is complete.");
+    addressStepPage.goToShippingMenu();
+
+    shippingStepPage.markTermsOfServiceCheckbox();
+    shippingStepPage.goToPaymentMethodMenu();
+
+    paymentStepPage.selectPaymentMethod();
+    paymentStepPage.goToConfirmOrderMenu();
+
+    // assertion
+    paymentStepPage.validateOrderMessage(validationMessage);
   });
 });

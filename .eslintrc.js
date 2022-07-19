@@ -22,7 +22,11 @@ module.exports = {
     "cypress/assertion-before-screenshot": "warn",
     "cypress/no-force": "warn",
     "no-unused-vars": "warn",
-    "require-jsdoc": "warn",
+    "require-jsdoc": ["error", {
+      "require": {
+        "ClassDeclaration": false,
+      },
+    }],
     "max-len": ["error", {"code": 120}],
   },
 };
