@@ -24,19 +24,4 @@ type Information = {
     addresInput: string,
   };
 
-  type Months = {
-    Jan: string,
-    Feb: string,
-    Mar: string,
-    Apr: string,
-    May: string,
-    Jun: string,
-    Jul: string,
-    Aug: string,
-    Sep: string,
-    Oct: string,
-    Nov: string,
-    Dic: string,
-  };
-
-export {Information, FormFields, Months};
+export {Information, FormFields};
