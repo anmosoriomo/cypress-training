@@ -1,25 +1,39 @@
-import {UploadPage, UploadConfirmationPage}
+import {UploadPage, DownloadPage, FileTransferValidationPage}
   from "../page/index";
 
-describe("upload a file", () => {
+describe("upload a file then download another one", () => {
   let uploadPage: UploadPage;
-  let uploadConfirmationPage: UploadConfirmationPage;
+  let downloadPage: DownloadPage;
+  let fileTransferValidationPage: FileTransferValidationPage;
 
   before(() => {
     uploadPage = new UploadPage;
-    uploadConfirmationPage = new UploadConfirmationPage;
+    fileTransferValidationPage = new FileTransferValidationPage;
+    downloadPage = new DownloadPage;
   });
 
   it("then the file should be uploaded", () => {
     // Arrange
-    const file: string = "the-song.txt";
+    const uploadedFile: string = "the-song.txt";
     const validationMessage: string = "File Uploaded!";
     uploadPage.visitUploadDemoSite();
 
     // Action
-    uploadPage.uploadFile(file);
+    uploadPage.uploadFile(uploadedFile);
 
     // Assertion
-    uploadConfirmationPage.validateUpload(validationMessage);
+    fileTransferValidationPage.validateUpload(validationMessage);
+  });
+
+  it("then a file should be downloaded", () => {
+    // Arrange
+    const downloadedFile: string = "sampleFile.jpeg";
+    downloadPage.visitDownloadDemoSite();
+
+    // Action
+    downloadPage.downloadFile();
+
+    // Assertion
+    downloadPage.validateDownload(downloadedFile);
   });
 });

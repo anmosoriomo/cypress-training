@@ -1,4 +1,4 @@
-class UploadConfirmationPage {
+class FileTransferValidationPage {
   private uploadedFileMessage: string;
 
   constructor() {
@@ -11,4 +11,4 @@ class UploadConfirmationPage {
   }
 }
 
-export {UploadConfirmationPage};
+export {FileTransferValidationPage};
