@@ -9,6 +9,7 @@
         ],
         "types": [
             "cypress",
+            "cypress-file-upload",
             "node"
         ]
     },
