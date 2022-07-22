@@ -19,7 +19,7 @@ class PersonalFormPage {
       dateInput: {
         month: ".react-datepicker__month-select",
         year: ".react-datepicker__year-select",
-        day: ".react-datepicker__day--0",
+        day: ".react-datepicker__day",
       },
       mobileNumberInput: "#userNumber",
       hobbiesInput: ".custom-checkbox",
@@ -41,13 +41,8 @@ class PersonalFormPage {
       cy.get(this.formFields.dateInput.month)
           .select(`${dateOfBirth.getMonth()}`);
       cy.get(this.formFields.dateInput.year).select(`${dateOfBirth.getFullYear()}`);
-      if (`${dateOfBirth.getDate()}`.length > 1) {
-        cy.get(`${this.formFields.dateInput.day}${dateOfBirth.getDate()}`)
-            .not(excludeDayOutOfMonth).click();
-      } else {
-        cy.get(`${this.formFields.dateInput.day}0${dateOfBirth.getDate()}`)
-            .not(excludeDayOutOfMonth).click();
-      }
+      cy.get(this.formFields.dateInput.day).not(excludeDayOutOfMonth)
+          .contains(dateOfBirth.getDate()).click();
     });
   }
 
